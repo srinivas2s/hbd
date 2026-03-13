@@ -1,6 +1,6 @@
 :root {
     --bg-cream: #fffdf9;
-    --primary-pink: rgba(77, 7, 48, 0.85);
+    --primary-pink: rgba(138, 8, 51, 0.92);
     --grid-line: rgba(240, 64, 166, 0.15);
 }
 
@@ -33,35 +33,36 @@ html {
 
 /* ===== SVG Border Shapes ===== */
 
-/* Left side: Full-height S-curve wave */
+/* Left side: Full-height S-curve wave
+   - Wide at top, narrows, bulges out at center, narrows again at bottom */
 .border-left {
     position: fixed;
     left: 0;
     top: 0;
-    width: 150px;
+    width: 140px;
     height: 100vh;
     z-index: 10;
     pointer-events: none;
 }
 
-/* Top-right corner organic blob */
+/* Top-right corner: Large organic concave sweep */
 .border-top-right {
     position: fixed;
     top: 0;
     right: 0;
-    width: 280px;
-    height: 280px;
+    width: 40vw;
+    height: 35vh;
     z-index: 10;
     pointer-events: none;
 }
 
-/* Bottom-right corner organic blob */
+/* Bottom-right corner: Large organic concave sweep */
 .border-bottom-right {
     position: fixed;
     bottom: 0;
     right: 0;
-    width: 320px;
-    height: 280px;
+    width: 45vw;
+    height: 35vh;
     z-index: 10;
     pointer-events: none;
 }
