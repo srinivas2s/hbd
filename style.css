@@ -33,13 +33,13 @@ html {
 
 /* ===== SVG Border Shapes ===== */
 
-/* Left side: Full-height S-curve wave
-   - Wide at top, narrows, bulges out at center, narrows again at bottom */
+/* Left side: Full-height dramatic S-curve wave
+   - Very wide at top, narrows dramatically, bulges back out, stays wide at bottom */
 .border-left {
     position: fixed;
     left: 0;
     top: 0;
-    width: 140px;
+    width: 30vw;
     height: 100vh;
     z-index: 10;
     pointer-events: none;
@@ -50,8 +50,8 @@ html {
     position: fixed;
     top: 0;
     right: 0;
-    width: 40vw;
-    height: 35vh;
+    width: 15vw;
+    height: 20vh;
     z-index: 10;
     pointer-events: none;
 }
