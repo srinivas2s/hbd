@@ -39,22 +39,24 @@ html {
     position: fixed;
     top: 0;
     height: 100vh;
-    width: 60px;
+    width: 120px;
+    /* Increased width for deeper curve */
     z-index: 10;
     pointer-events: none;
 }
 
 .wave-left {
     left: 0;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0,0 v100 h60 Q30,75 60,50 T60,0 Z' fill='%234d0730cc'/%3E%3C/svg%3E");
-    background-size: 100% 200px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0,0 v100 h40 C100,75 0,25 40,0 Z' fill='%234d0730cc'/%3E%3C/svg%3E");
+    background-size: 100% 600px;
+    /* Taller background size for smoother, larger wave */
     background-repeat: repeat-y;
 }
 
 .wave-right {
     right: 0;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M100,0 v100 h-60 Q70,75 40,50 T40,0 Z' fill='%234d0730cc'/%3E%3C/svg%3E");
-    background-size: 100% 200px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M100,0 v100 h-40 C0,75 100,25 60,0 Z' fill='%234d0730cc'/%3E%3C/svg%3E");
+    background-size: 100% 600px;
     background-repeat: repeat-y;
 }
 
