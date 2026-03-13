@@ -32,7 +32,32 @@ html {
     background-size: 30px 30px;
 }
 
-/* Corner Curved Borders - Removed in favor of Side Waves */
+/* Top Right Organic Corner Curve */
+.corner-curve {
+    position: fixed;
+    background-color: var(--primary-pink);
+    z-index: 10;
+    pointer-events: none;
+    width: 350px;
+    height: 350px;
+}
+
+.curve-top-right {
+    top: -80px;
+    right: -80px;
+    /* Large organic curve - matching the reference style */
+    border-radius: 0 0 0 100%;
+    transform: rotate(5deg);
+    /* Slight tilt for more "organic" feel */
+}
+
+.curve-bottom-right {
+    bottom: -80px;
+    right: -80px;
+    /* Organic curve for the bottom right */
+    border-radius: 100% 0 0 0;
+    transform: rotate(-5deg);
+}
 
 /* Wavy Side Borders */
 .side-wave {
