@@ -1,7 +1,9 @@
 :root {
-    --bg-cream: #fffdf9;
-    --primary-pink: rgba(138, 8, 51, 0.92);
-    --grid-line: rgba(240, 64, 166, 0.15);
+    --bg-cream: #fdf8f4;
+    --primary-maroon: #8a0833;
+    --accent-rose: #a01045;
+    --grid-line: rgba(180, 40, 100, 0.08);
+    --dot-color: rgba(138, 8, 51, 0.12);
 }
 
 * {
@@ -16,8 +18,10 @@ html {
     height: 100%;
     background-color: var(--bg-cream);
     overflow-x: hidden;
+    font-family: 'Georgia', serif;
 }
 
+/* ===== Grid Background ===== */
 .grid-background {
     position: fixed;
     top: 0;
@@ -28,46 +32,11 @@ html {
     background-image:
         linear-gradient(var(--grid-line) 1px, transparent 1px),
         linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-    background-size: 30px 30px;
-}
-
-/* ===== SVG Border Shapes ===== */
-
-/* Left side: Full-height dramatic S-curve wave
-   - Very wide at top, narrows dramatically, bulges back out, stays wide at bottom */
-.border-left {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 30vw;
-    height: 100vh;
-    z-index: 10;
+    background-size: 40px 40px;
     pointer-events: none;
 }
 
-/* Top-right corner: Large organic concave sweep */
-.border-top-right {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 15vw;
-    height: 20vh;
-    z-index: 10;
-    pointer-events: none;
-}
-
-/* Bottom-right corner: Large organic concave sweep */
-.border-bottom-right {
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    width: 45vw;
-    height: 35vh;
-    z-index: 10;
-    pointer-events: none;
-}
-
-/* Texture Overlay */
+/* Paper-like texture overlay */
 .grid-background::after {
     content: "";
     position: absolute;
@@ -76,6 +45,113 @@ html {
     width: 100%;
     height: 100%;
     background-image: url("https://www.transparenttextures.com/patterns/paper-fibers.png");
-    opacity: 0.1;
+    opacity: 0.06;
     pointer-events: none;
+}
+
+/* ===== SVG Border Shapes ===== */
+
+/* Left border: Elegant narrower S-curve ribbon */
+.border-left {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 22vw;
+    height: 100vh;
+    z-index: 10;
+    pointer-events: none;
+    filter: drop-shadow(4px 0 20px rgba(138, 8, 51, 0.15));
+}
+
+/* Top-right corner accent */
+.border-top-right {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 18vw;
+    height: 22vh;
+    z-index: 10;
+    pointer-events: none;
+    filter: drop-shadow(-2px 2px 12px rgba(138, 8, 51, 0.1));
+}
+
+/* Bottom-right corner accent */
+.border-bottom-right {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 20vw;
+    height: 24vh;
+    z-index: 10;
+    pointer-events: none;
+    filter: drop-shadow(-2px -2px 12px rgba(138, 8, 51, 0.1));
+}
+
+/* ===== Floating Decorative Dots ===== */
+.dot {
+    position: fixed;
+    border-radius: 50%;
+    background: var(--dot-color);
+    z-index: 5;
+    pointer-events: none;
+    animation: float 6s ease-in-out infinite;
+}
+
+.dot-1 {
+    width: 12px;
+    height: 12px;
+    top: 15%;
+    right: 12%;
+    animation-delay: 0s;
+}
+
+.dot-2 {
+    width: 8px;
+    height: 8px;
+    top: 40%;
+    right: 25%;
+    animation-delay: 1.2s;
+}
+
+.dot-3 {
+    width: 16px;
+    height: 16px;
+    top: 65%;
+    right: 8%;
+    animation-delay: 2.4s;
+}
+
+.dot-4 {
+    width: 6px;
+    height: 6px;
+    top: 80%;
+    right: 35%;
+    animation-delay: 3.6s;
+}
+
+.dot-5 {
+    width: 10px;
+    height: 10px;
+    top: 25%;
+    right: 40%;
+    animation-delay: 4.8s;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+        opacity: 0.4;
+    }
+    50% {
+        transform: translateY(-12px);
+        opacity: 0.8;
+    }
+}
+
+/* ===== Content Area ===== */
+.content-area {
+    position: relative;
+    z-index: 15;
+    min-height: 100vh;
+    padding: 60px 80px 60px 26vw;
 }
