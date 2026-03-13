@@ -1,8 +1,7 @@
 :root {
     --bg-cream: #fffdf9;
-    --primary-pink: rgba(77, 7, 48, 0.792);
+    --primary-pink: rgba(77, 7, 48, 0.85);
     --grid-line: rgba(240, 64, 166, 0.15);
-    /* Slightly lighter for the grid lines */
 }
 
 * {
@@ -32,57 +31,39 @@ html {
     background-size: 30px 30px;
 }
 
-/* Top Right Organic Corner Curve */
-.corner-curve {
+/* ===== SVG Border Shapes ===== */
+
+/* Left side: Full-height S-curve wave */
+.border-left {
     position: fixed;
-    background-color: var(--primary-pink);
+    left: 0;
+    top: 0;
+    width: 150px;
+    height: 100vh;
     z-index: 10;
     pointer-events: none;
-    width: 350px;
-    height: 350px;
 }
 
-.curve-top-right {
-    top: -80px;
-    right: -80px;
-    /* Large organic curve - matching the reference style */
-    border-radius: 0 0 0 100%;
-    transform: rotate(5deg);
-    /* Slight tilt for more "organic" feel */
-}
-
-.curve-bottom-right {
-    bottom: -80px;
-    right: -80px;
-    /* Organic curve for the bottom right */
-    border-radius: 100% 0 0 0;
-    transform: rotate(-5deg);
-}
-
-/* Wavy Side Borders */
-.side-wave {
+/* Top-right corner organic blob */
+.border-top-right {
     position: fixed;
     top: 0;
-    height: 100vh;
-    width: 120px;
-    /* Increased width for deeper curve */
+    right: 0;
+    width: 280px;
+    height: 280px;
     z-index: 10;
     pointer-events: none;
 }
 
-.wave-left {
-    left: 0;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0,0 v100 h40 C100,75 0,25 40,0 Z' fill='%234d0730cc'/%3E%3C/svg%3E");
-    background-size: 100% 600px;
-    /* Taller background size for smoother, larger wave */
-    background-repeat: repeat-y;
-}
-
-.wave-right {
+/* Bottom-right corner organic blob */
+.border-bottom-right {
+    position: fixed;
+    bottom: 0;
     right: 0;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M100,0 v100 h-40 C0,75 100,25 60,0 Z' fill='%234d0730cc'/%3E%3C/svg%3E");
-    background-size: 100% 600px;
-    background-repeat: repeat-y;
+    width: 320px;
+    height: 280px;
+    z-index: 10;
+    pointer-events: none;
 }
 
 /* Texture Overlay */

@@ -10,16 +10,24 @@
 
 <body>
 
-    <!-- Corner Curves -->
-    <div class="corner-curve curve-top-right"></div>
-    <div class="corner-curve curve-bottom-right"></div>
+    <!-- Left Side Wavy Border (Full-height S-curve) -->
+    <svg class="border-left" viewBox="0 0 200 1000" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,0 L0,1000 L80,1000 C80,1000 30,800 120,600 C200,420 20,350 80,200 C120,100 60,0 60,0 Z"
+            fill="rgba(77, 7, 48, 0.85)" />
+    </svg>
 
-    <!-- Wavy Side Borders -->
-    <div class="side-wave wave-left"></div>
-    <div class="side-wave wave-right"></div>
+    <!-- Top Right Corner Curve -->
+    <svg class="border-top-right" viewBox="0 0 400 400" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M400,0 L400,400 C400,400 380,250 250,200 C120,150 100,50 100,0 Z" fill="rgba(77, 7, 48, 0.85)" />
+    </svg>
+
+    <!-- Bottom Right Corner Curve -->
+    <svg class="border-bottom-right" viewBox="0 0 400 400" preserveAspectRatio="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <path d="M400,400 L400,0 C400,0 380,150 250,200 C120,250 100,350 100,400 Z" fill="rgba(77, 7, 48, 0.85)" />
+    </svg>
 
     <div class="grid-background">
-
 
         <!-- Content will go here -->
     </div>
