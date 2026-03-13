@@ -57,31 +57,6 @@ html {
 }
 
 
-/* Tech Stack Logo Style */
-.tech-stack-logo {
-    position: fixed;
-    bottom: 30px;
-    left: 30px;
-    display: flex;
-    gap: 10px;
-    z-index: 20;
-}
-
-.tech-icon {
-    width: 50px;
-    height: 50px;
-    background: var(--primary-pink);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-family: 'Outfit', sans-serif;
-    font-size: 0.8rem;
-    font-weight: 600;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    border: 2px solid white;
-}
 
 /* Texture Overlay */
 .grid-background::after {
