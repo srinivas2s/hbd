@@ -1,9 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@0,700;1,400&family=Luckiest+Guy&family=Great+Vibes&display=swap');
+
 :root {
-    --bg-cream: #fdf8f4;
-    --primary-maroon: #8a0833;
-    --accent-rose: #a01045;
-    --grid-line: rgba(180, 40, 100, 0.08);
-    --dot-color: rgba(138, 8, 51, 0.12);
+    --bg-cream: #fdfafb;
+    --primary-pink: #d33152;
+    --accent-pink: #e33051;
+    --soft-pink: #c72f57;
+    --grid-line: rgba(255, 182, 193, 0.15);
+    --dot-color: rgba(255, 182, 193, 0.2);
 }
 
 * {
@@ -18,7 +21,8 @@ html {
     height: 100%;
     background-color: var(--bg-cream);
     overflow-x: hidden;
-    font-family: 'Georgia', serif;
+    font-family: 'Playfair Display', serif;
+    color: var(--primary-pink);
 }
 
 /* ===== Grid Background ===== */
@@ -60,7 +64,7 @@ html {
     height: 100vh;
     z-index: 10;
     pointer-events: none;
-    filter: drop-shadow(4px 0 20px rgba(138, 8, 51, 0.15));
+    filter: drop-shadow(4px 0 20px rgba(255, 182, 193, 0.25));
 }
 
 /* Top-right corner accent */
@@ -72,7 +76,7 @@ html {
     height: 22vh;
     z-index: 10;
     pointer-events: none;
-    filter: drop-shadow(-2px 2px 12px rgba(138, 8, 51, 0.1));
+    filter: drop-shadow(-2px 2px 12px rgba(255, 182, 193, 0.2));
 }
 
 /* Bottom-right corner accent */
@@ -84,7 +88,7 @@ html {
     height: 30vh;
     z-index: 10;
     pointer-events: none;
-    filter: drop-shadow(-2px -4px 16px rgba(138, 8, 51, 0.12));
+    filter: drop-shadow(-2px -4px 16px rgba(255, 182, 193, 0.22));
 }
 
 
@@ -95,4 +99,155 @@ html {
     z-index: 15;
     min-height: 100vh;
     padding: 60px 80px 60px 26vw;
+}
+
+/* ===== Hero Section ===== */
+.hero-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 120px);
+    gap: 60px;
+    animation: fadeIn 1.5s ease-out;
+    position: relative;
+    /* Anchor for the cat sticker */
+}
+
+.text-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transform: translateX(-10%); /* Shifts words slightly to the left */
+}
+
+.hey-title {
+    font-size: 8rem;
+    font-family: 'Luckiest Guy', cursive;
+    color: #8c2a3d;
+    -webkit-text-stroke: 2px #fff;
+    text-shadow: 4px 4px 0px rgba(0, 0, 0, 0.1);
+    margin: 0;
+    line-height: 1;
+}
+
+.subtitle-bold {
+    font-size: 3rem;
+    font-family: 'Dancing Script', cursive;
+    color: #1a1a1a;
+    margin: 10px 0;
+}
+
+.question-thin {
+    font-size: 2.5rem;
+    font-family: 'Great Vibes', cursive;
+    color: #333;
+    margin: 0 0 30px 0;
+}
+
+.button-group {
+    display: flex;
+    gap: 20px;
+}
+
+.btn {
+    padding: 15px 60px;
+    border-radius: 50px;
+    border: none;
+    font-size: 2rem;
+    font-family: 'Playfair Display', serif;
+    font-weight: bold;
+    color: white;
+    background-color: #a64d5e;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    text-decoration: underline;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    background-color: #8c2a3d;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.cat-container {
+    position: absolute;
+    z-index: 20;
+    /* --- STICKER POSITIONING --- */
+    /* Adjust these values to move the cat sticker anywhere! */
+    top: 8%;
+    /* Move up or down (0% to 100%) */
+    left: 60%;
+    /* Move left or right (0% to 100%) */
+    /* --------------------------- */
+}
+
+.hero-cat {
+    max-width: 320px;
+    width: 100%;
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.1));
+    transition: transform 0.3s ease;
+    animation: float 4s ease-in-out infinite;
+    mix-blend-mode: multiply;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+.hero-cat:hover {
+    transform: scale(1.05) rotate(2deg);
+}
+
+.message-container {
+    text-align: center;
+}
+
+.birthday-title {
+    font-size: 5rem;
+    font-family: 'Dancing Script', cursive;
+    color: var(--primary-pink);
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.birthday-subtitle {
+    font-size: 1.5rem;
+    font-style: italic;
+    color: var(--accent-pink);
+    opacity: 0.8;
+}
+
+/* ===== Animations ===== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .content-area {
+        padding: 40px 40px 40px 30vw;
+    }
+
+    .birthday-title {
+        font-size: 3.5rem;
+    }
 }
