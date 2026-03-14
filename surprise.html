@@ -15,7 +15,8 @@
             box-sizing: border-box;
         }
 
-        body, html {
+        body,
+        html {
             width: 100%;
             min-height: 100vh;
             overflow-x: hidden;
@@ -35,10 +36,12 @@
         .page-bg::before {
             content: '';
             position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.06) 0%, transparent 60%),
-                        radial-gradient(ellipse at 80% 70%, rgba(0,0,0,0.1) 0%, transparent 50%);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at 30% 20%, rgba(255, 255, 255, 0.06) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 70%, rgba(0, 0, 0, 0.1) 0%, transparent 50%);
             pointer-events: none;
             z-index: 1;
         }
@@ -46,8 +49,10 @@
         /* ===== Floating Hearts Background ===== */
         .bg-hearts {
             position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             pointer-events: none;
             z-index: 2;
             overflow: hidden;
@@ -60,20 +65,88 @@
             animation: floatHeart 8s ease-in-out infinite;
         }
 
-        .bg-heart:nth-child(1) { left: 5%; top: 20%; animation-delay: 0s; font-size: 1.2rem; }
-        .bg-heart:nth-child(2) { left: 15%; top: 60%; animation-delay: 1.5s; font-size: 2rem; }
-        .bg-heart:nth-child(3) { left: 30%; top: 80%; animation-delay: 3s; font-size: 1rem; }
-        .bg-heart:nth-child(4) { left: 50%; top: 10%; animation-delay: 0.8s; font-size: 1.8rem; }
-        .bg-heart:nth-child(5) { left: 70%; top: 40%; animation-delay: 2.2s; font-size: 1.4rem; }
-        .bg-heart:nth-child(6) { left: 85%; top: 75%; animation-delay: 4s; font-size: 1.6rem; }
-        .bg-heart:nth-child(7) { left: 92%; top: 15%; animation-delay: 1s; font-size: 1.1rem; }
-        .bg-heart:nth-child(8) { left: 40%; top: 45%; animation-delay: 2.8s; font-size: 2.2rem; }
-        .bg-heart:nth-child(9) { left: 60%; top: 85%; animation-delay: 3.5s; font-size: 1rem; }
-        .bg-heart:nth-child(10) { left: 25%; top: 35%; animation-delay: 5s; font-size: 1.3rem; }
+        .bg-heart:nth-child(1) {
+            left: 5%;
+            top: 20%;
+            animation-delay: 0s;
+            font-size: 1.2rem;
+        }
+
+        .bg-heart:nth-child(2) {
+            left: 15%;
+            top: 60%;
+            animation-delay: 1.5s;
+            font-size: 2rem;
+        }
+
+        .bg-heart:nth-child(3) {
+            left: 30%;
+            top: 80%;
+            animation-delay: 3s;
+            font-size: 1rem;
+        }
+
+        .bg-heart:nth-child(4) {
+            left: 50%;
+            top: 10%;
+            animation-delay: 0.8s;
+            font-size: 1.8rem;
+        }
+
+        .bg-heart:nth-child(5) {
+            left: 70%;
+            top: 40%;
+            animation-delay: 2.2s;
+            font-size: 1.4rem;
+        }
+
+        .bg-heart:nth-child(6) {
+            left: 85%;
+            top: 75%;
+            animation-delay: 4s;
+            font-size: 1.6rem;
+        }
+
+        .bg-heart:nth-child(7) {
+            left: 92%;
+            top: 15%;
+            animation-delay: 1s;
+            font-size: 1.1rem;
+        }
+
+        .bg-heart:nth-child(8) {
+            left: 40%;
+            top: 45%;
+            animation-delay: 2.8s;
+            font-size: 2.2rem;
+        }
+
+        .bg-heart:nth-child(9) {
+            left: 60%;
+            top: 85%;
+            animation-delay: 3.5s;
+            font-size: 1rem;
+        }
+
+        .bg-heart:nth-child(10) {
+            left: 25%;
+            top: 35%;
+            animation-delay: 5s;
+            font-size: 1.3rem;
+        }
 
         @keyframes floatHeart {
-            0%, 100% { transform: translateY(0) scale(1); opacity: 0.3; }
-            50% { transform: translateY(-20px) scale(1.1); opacity: 0.6; }
+
+            0%,
+            100% {
+                transform: translateY(0) scale(1);
+                opacity: 0.3;
+            }
+
+            50% {
+                transform: translateY(-20px) scale(1.1);
+                opacity: 0.6;
+            }
         }
 
         /* ===== MEMORY GALLERY ===== */
@@ -121,14 +194,17 @@
         /* Initial states for reveal */
         /* Normal row entry: Photo from Right, Quote from Left (Wait, user said slide R->L on scroll) */
         /* Let's make them both slide in from their respective screen edges */
-        
+
         /* Photo side entry */
         .memory-row .memory-photo-side {
             opacity: 0;
-            transform: translateX(300px); /* Start from right edge */
+            transform: translateX(300px);
+            /* Start from right edge */
         }
+
         .memory-row:nth-child(even) .memory-photo-side {
-            transform: translateX(-300px); /* Start from left edge for even rows */
+            transform: translateX(-300px);
+            /* Start from left edge for even rows */
         }
 
         /* Quote side entry */
@@ -136,6 +212,7 @@
             opacity: 0;
             transform: translateX(-150px);
         }
+
         .memory-row:nth-child(even) .memory-quote-side {
             transform: translateX(150px);
             align-items: flex-end;
@@ -153,14 +230,14 @@
         .rope-segment {
             width: 360px;
             height: 4px;
-            background: linear-gradient(90deg, 
-                transparent 0%, 
-                rgba(210, 180, 140, 0.9) 10%, 
-                rgba(180, 150, 110, 0.95) 50%, 
-                rgba(210, 180, 140, 0.9) 90%, 
-                transparent 100%);
+            background: linear-gradient(90deg,
+                    transparent 0%,
+                    rgba(210, 180, 140, 0.9) 10%,
+                    rgba(180, 150, 110, 0.95) 50%,
+                    rgba(210, 180, 140, 0.9) 90%,
+                    transparent 100%);
             border-radius: 2px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
             position: absolute;
             top: -20px;
             z-index: 1;
@@ -209,8 +286,15 @@
         }
 
         @keyframes slowSwing {
-            0%, 100% { transform: rotate(-3deg); }
-            50% { transform: rotate(3deg); }
+
+            0%,
+            100% {
+                transform: rotate(-3deg);
+            }
+
+            50% {
+                transform: rotate(3deg);
+            }
         }
 
         /* ===== Quote Styling ===== */
@@ -246,22 +330,44 @@
 
         .love-text {
             font-family: 'Luckiest Guy', cursive;
-            font-size: 7rem;
+            font-size: 4rem;
             color: #f8a4b8;
-            text-shadow: 5px 5px 0px rgba(0, 0, 0, 0.1);
+            text-shadow: 4px 4px 0px rgba(0, 0, 0, 0.15);
+            margin: 20px 0;
+            display: inline-block;
+        }
+
+        .finale-cat {
+            width: 150px;
+            margin: 20px auto;
+            display: block;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.2));
+            animation: heartBeat 1.5s ease-in-out infinite;
+        }
+
+        @keyframes heartBeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
         }
 
         @media (max-width: 900px) {
-            .memory-row, .memory-row:nth-child(even) {
+
+            .memory-row,
+            .memory-row:nth-child(even) {
                 flex-direction: column;
                 gap: 40px;
                 padding: 60px 20px;
             }
-            .memory-quote-side, .memory-row:nth-child(even) .memory-quote-side {
+
+            .memory-quote-side,
+            .memory-row:nth-child(even) .memory-quote-side {
                 align-items: center;
                 text-align: center;
             }
-            .love-text { font-size: 4rem; }
+
+            .love-text {
+                font-size: 4rem;
+            }
         }
 
         /* Cake floating left bottom */
@@ -271,9 +377,8 @@
             left: 20px;
             font-size: 3rem;
             z-index: 100;
-            filter: drop-shadow(0 0 10px rgba(255,255,255,0.3));
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
         }
-
     </style>
 </head>
 
@@ -288,13 +393,17 @@
                 <div class="memory-photo-side">
                     <div class="rope-segment"></div>
                     <div class="polaroid">
-                        <div class="clip"><div class="clip-body"></div></div>
-                        <img src="photo1.jpg" alt="Memory 1" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22250%22 height=%22220%22><rect fill=%22%23fce4ec%22 width=%22250%22 height=%22220%22/><text x=%2250%%22 y=%2250%%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-size=%2250%22>1</text></svg>'">
+                        <div class="clip">
+                            <div class="clip-body"></div>
+                        </div>
+                        <img src="photo1.jpg" alt="Memory 1"
+                            onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22250%22 height=%22220%22><rect fill=%22%23fce4ec%22 width=%22250%22 height=%22220%22/><text x=%2250%%22 y=%2250%%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-size=%2250%22>1</text></svg>'">
                         <p class="polaroid-caption">Forever 💝</p>
                     </div>
                 </div>
                 <div class="memory-quote-side">
-                    <div class="quote-text">"You don't know how much you mean to me... every heartbeat whispers your name."</div>
+                    <div class="quote-text">"The one whose smile shines fairest,
+as though the sun itself found reason to linger🫶🏻."</div>
                     <div class="quote-author">— for you, always ♡</div>
                 </div>
             </div>
@@ -304,13 +413,17 @@
                 <div class="memory-photo-side">
                     <div class="rope-segment"></div>
                     <div class="polaroid" style="animation-delay: -0.5s">
-                        <div class="clip"><div class="clip-body"></div></div>
-                        <img src="photo2.jpg" alt="Memory 2" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22250%22 height=%22220%22><rect fill=%22%23f3e5f5%22 width=%22250%22 height=%22220%22/><text x=%2250%%22 y=%2250%%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-size=%2250%22>2</text></svg>'">
+                        <div class="clip">
+                            <div class="clip-body"></div>
+                        </div>
+                        <img src="photo2.jpg" alt="Memory 2"
+                            onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22250%22 height=%22220%22><rect fill=%22%23f3e5f5%22 width=%22250%22 height=%22220%22/><text x=%2250%%22 y=%2250%%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-size=%2250%22>2</text></svg>'">
                         <p class="polaroid-caption">Us 💕</p>
                     </div>
                 </div>
                 <div class="memory-quote-side">
-                    <div class="quote-text">"Every moment with you is a gift I cherish... you are my favorite adventure."</div>
+                    <div class="quote-text">"the one whose eyes speak a thousand silent tales,
+more eloquent than words ever could 👀"</div>
                     <div class="quote-author">— with all my love ♡</div>
                 </div>
             </div>
@@ -320,13 +433,17 @@
                 <div class="memory-photo-side">
                     <div class="rope-segment"></div>
                     <div class="polaroid" style="animation-delay: -1s">
-                        <div class="clip"><div class="clip-body"></div></div>
-                        <img src="photo3.jpg" alt="Memory 3" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22250%22 height=%22220%22><rect fill=%22%23e1f5fe%22 width=%22250%22 height=%22220%22/><text x=%2250%%22 y=%2250%%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-size=%2250%22>3</text></svg>'">
+                        <div class="clip">
+                            <div class="clip-body"></div>
+                        </div>
+                        <img src="photo3.jpg" alt="Memory 3"
+                            onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22250%22 height=%22220%22><rect fill=%22%23e1f5fe%22 width=%22250%22 height=%22220%22/><text x=%2250%%22 y=%2250%%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-size=%2250%22>3</text></svg>'">
                         <p class="polaroid-caption">Together 💗</p>
                     </div>
                 </div>
                 <div class="memory-quote-side">
-                    <div class="quote-text">"My world became more beautiful the day you walked into it."</div>
+                    <div class="quote-text">"The one whose soul remains pure and innocent,
+like the first light of dawn upon a quiet morn 🤍"</div>
                     <div class="quote-author">— yours forever ♡</div>
                 </div>
             </div>
@@ -336,13 +453,18 @@
                 <div class="memory-photo-side">
                     <div class="rope-segment"></div>
                     <div class="polaroid" style="animation-delay: -1.5s">
-                        <div class="clip"><div class="clip-body"></div></div>
-                        <img src="photo4.jpg" alt="Memory 4" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22250%22 height=%22220%22><rect fill=%22%23f1f8e9%22 width=%22250%22 height=%22220%22/><text x=%2250%%22 y=%2250%%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-size=%2250%22>4</text></svg>'">
+                        <div class="clip">
+                            <div class="clip-body"></div>
+                        </div>
+                        <img src="photo4.jpg" alt="Memory 4"
+                            onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22250%22 height=%22220%22><rect fill=%22%23f1f8e9%22 width=%22250%22 height=%22220%22/><text x=%2250%%22 y=%2250%%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-size=%2250%22>4</text></svg>'">
                         <p class="polaroid-caption">Sweet Memories 🍦</p>
                     </div>
                 </div>
                 <div class="memory-quote-side">
-                    <div class="quote-text">"You're the song my heart is always singing, the melody I can't forget."</div>
+                    <div class="quote-text">"The one who is the very reason my own lips learn to smile,
+for thy joy awakens joy within me.🫣"
+                    </div>
                     <div class="quote-author">— strictly mine ♡</div>
                 </div>
             </div>
@@ -352,13 +474,16 @@
                 <div class="memory-photo-side">
                     <div class="rope-segment"></div>
                     <div class="polaroid" style="animation-delay: -2s">
-                        <div class="clip"><div class="clip-body"></div></div>
-                        <img src="photo5.jpg" alt="Memory 5" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22250%22 height=%22220%22><rect fill=%22%23fffde7%22 width=%22250%22 height=%22220%22/><text x=%2250%%22 y=%2250%%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-size=%2250%22>5</text></svg>'">
+                        <div class="clip">
+                            <div class="clip-body"></div>
+                        </div>
+                        <img src="photo5.jpg" alt="Memory 5"
+                            onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22250%22 height=%22220%22><rect fill=%22%23fffde7%22 width=%22250%22 height=%22220%22/><text x=%2250%%22 y=%2250%%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-size=%2250%22>5</text></svg>'">
                         <p class="polaroid-caption">Pure Love ✨</p>
                     </div>
                 </div>
                 <div class="memory-quote-side">
-                    <div class="quote-text">"In your eyes, I've found my home and my calmest harbor."</div>
+                    <div class="quote-text">"The one who holds my hand through every storm and sunshine ♥️"</div>
                     <div class="quote-author">— only you ♡</div>
                 </div>
             </div>
@@ -368,13 +493,18 @@
                 <div class="memory-photo-side">
                     <div class="rope-segment"></div>
                     <div class="polaroid" style="animation-delay: -2.5s">
-                        <div class="clip"><div class="clip-body"></div></div>
-                        <img src="photo6.jpg" alt="Memory 6" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22250%22 height=%22220%22><rect fill=%22%23efebe9%22 width=%22250%22 height=%22220%22/><text x=%2250%%22 y=%2250%%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-size=%2250%22>6</text></svg>'">
+                        <div class="clip">
+                            <div class="clip-body"></div>
+                        </div>
+                        <img src="photo6.jpg" alt="Memory 6"
+                            onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22250%22 height=%22220%22><rect fill=%22%23efebe9%22 width=%22250%22 height=%22220%22/><text x=%2250%%22 y=%2250%%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-size=%2250%22>6</text></svg>'">
                         <p class="polaroid-caption">My Sunshine ☀️</p>
                     </div>
                 </div>
                 <div class="memory-quote-side">
-                    <div class="quote-text">"You're my today and all of my tomorrows, every single one of them."</div>
+                    <div class="quote-text">"the one who makes my heart feel safe and at peace,
+as if thy presence were my truest home 🫶🏻
+"</div>
                     <div class="quote-author">— eternally yours ♡</div>
                 </div>
             </div>
@@ -384,81 +514,82 @@
                 <div class="memory-photo-side">
                     <div class="rope-segment"></div>
                     <div class="polaroid" style="animation-delay: -3s">
-                        <div class="clip"><div class="clip-body"></div></div>
-                        <img src="photo7.jpg" alt="Memory 7" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22250%22 height=%22220%22><rect fill=%22%23fce4ec%22 width=%22250%22 height=%22220%22/><text x=%2250%%22 y=%2250%%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-size=%2250%22>7</text></svg>'">
+                        <div class="clip">
+                            <div class="clip-body"></div>
+                        </div>
+                        <img src="photo7.jpg" alt="Memory 7"
+                            onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22250%22 height=%22220%22><rect fill=%22%23fce4ec%22 width=%22250%22 height=%22220%22/><text x=%2250%%22 y=%2250%%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-size=%2250%22>7</text></svg>'">
                         <p class="polaroid-caption">Birthday Spark ✨</p>
                     </div>
                 </div>
                 <div class="memory-quote-side">
-                    <div class="quote-text">"You are the reason I believe in magic... Happy Birthday, my everything!"</div>
+                    <div class="quote-text">"And above all,
+to my most cherished and beloved human —
+the keeper of my heart.
+A happiest of birthdays to thee, my baby. ♥️😘
+                    </div>
                     <div class="quote-author">— with all my heart ♡</div>
                 </div>
             </div>
         </div>
 
-        <div class="love-section" id="finale">
-            <div class="quote-text">And above all, to my most cherished and beloved human —the keeper of my heart.
-                <div classs="love-text">
-                    A happiest of birthdays to thee, my baby. ♥️😘
-                </div>
-        
+
+            <div id="confettiContainer"></div>
         </div>
 
-        <div id="confettiContainer"></div>
-    </div>
-
-    <script>
-        // Setup background hearts
-        const bg = document.getElementById('heartBg');
-        for (let i = 0; i < 20; i++) {
-            const h = document.createElement('span');
-            h.className = 'bg-heart';
-            h.innerHTML = '♥';
-            h.style.left = Math.random() * 100 + '%';
-            h.style.top = Math.random() * 100 + '%';
-            h.style.animationDelay = Math.random() * 5 + 's';
-            h.style.opacity = Math.random() * 0.5;
-            bg.appendChild(h);
-        }
-
-        // Intersection Observer for scroll reveal
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.3 });
-
-        document.querySelectorAll('.memory-row').forEach(row => observer.observe(row));
-        observer.observe(document.getElementById('finale'));
-
-        // Confetti effect on load
-        window.onload = () => {
-            const container = document.getElementById('confettiContainer');
-            for(let i=0; i<100; i++) {
-                const c = document.createElement('div');
-                c.style.position = 'fixed';
-                c.style.top = '-10px';
-                c.style.left = Math.random() * 100 + 'vw';
-                c.style.width = '10px';
-                c.style.height = '10px';
-                c.style.backgroundColor = ['#ff4081', '#ff80ab', '#ffffff', '#ffd54f'][Math.floor(Math.random()*4)];
-                c.style.borderRadius = '50%';
-                c.style.zIndex = '1000';
-                container.appendChild(c);
-                
-                const anim = c.animate([
-                    { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
-                    { transform: `translateY(100vh) rotate(${Math.random()*360}deg)`, opacity: 0 }
-                ], {
-                    duration: 2000 + Math.random()*3000,
-                    easing: 'ease-in',
-                    delay: Math.random()*2000
-                });
-                anim.onfinish = () => c.remove();
+        <script>
+            // Setup background hearts
+            const bg = document.getElementById('heartBg');
+            for (let i = 0; i < 20; i++) {
+                const h = document.createElement('span');
+                h.className = 'bg-heart';
+                h.innerHTML = '♥';
+                h.style.left = Math.random() * 100 + '%';
+                h.style.top = Math.random() * 100 + '%';
+                h.style.animationDelay = Math.random() * 5 + 's';
+                h.style.opacity = Math.random() * 0.5;
+                bg.appendChild(h);
             }
-        };
-    </script>
+
+            // Intersection Observer for scroll reveal
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.3 });
+
+            document.querySelectorAll('.memory-row').forEach(row => observer.observe(row));
+            observer.observe(document.getElementById('finale'));
+
+            // Confetti effect on load
+            window.onload = () => {
+                const container = document.getElementById('confettiContainer');
+                for (let i = 0; i < 100; i++) {
+                    const c = document.createElement('div');
+                    c.style.position = 'fixed';
+                    c.style.top = '-10px';
+                    c.style.left = Math.random() * 100 + 'vw';
+                    c.style.width = '10px';
+                    c.style.height = '10px';
+                    c.style.backgroundColor = ['#ff4081', '#ff80ab', '#ffffff', '#ffd54f'][Math.floor(Math.random() * 4)];
+                    c.style.borderRadius = '50%';
+                    c.style.zIndex = '1000';
+                    container.appendChild(c);
+
+                    const anim = c.animate([
+                        { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+                        { transform: `translateY(100vh) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+                    ], {
+                        duration: 2000 + Math.random() * 3000,
+                        easing: 'ease-in',
+                        delay: Math.random() * 2000
+                    });
+                    anim.onfinish = () => c.remove();
+                }
+            };
+        </script>
 </body>
+
 </html>
