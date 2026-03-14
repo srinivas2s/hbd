@@ -405,19 +405,14 @@
     <script>
         function openEnvelope() {
             const envelope = document.getElementById('envelope');
-            const overlay = document.getElementById('letterOverlay');
 
             // Animate envelope opening
             envelope.classList.add('envelope-opening');
 
-            // Show letter after envelope animation
+            // Navigate to surprise page after animation
             setTimeout(() => {
-                overlay.style.display = 'flex';
-                // Trigger reflow
-                overlay.offsetHeight;
-                overlay.classList.add('active');
-                launchConfetti();
-            }, 600);
+                window.location.href = 'surprise.html';
+            }, 800);
         }
 
         function closeEnvelope() {
