@@ -193,13 +193,19 @@ html {
 
 /* cat3 is bigger on the "No" page */
 .state-no .hero-cat {
-    max-width: 600px; /* Increased from 450px to make it even larger */
+    max-width: 800px; /* Even larger for the 'No' page */
 }
 
 /* 3. "Yes" State (YAYYYY) */
 .state-yes .cat-container {
     top: 45%;
     left: 75%;
+}
+
+/* 4. New "Excited" State (Are you excited?) */
+.state-excited .cat-container {
+    top: 40%;
+    left: 65%;
 }
 
 /* ------------------------------------------------------ */
