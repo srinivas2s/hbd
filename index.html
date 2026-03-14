@@ -6,6 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Birthday Special</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Preload critical assets -->
+    <link rel="preload" href="cat.png" as="image">
+    <link rel="preload" href="cat2.png" as="image">
+    <link rel="preload" href="cat3.png" as="image">
+    <link rel="preload" href="cat4.png" as="image">
+    <link rel="preload" href="cat6.png" as="image">
+    <link rel="preload" href="cat7.png" as="image">
+    <link rel="preload" href="envelope.png" as="image">
 </head>
 
 <body>
@@ -97,6 +105,17 @@
         const btnGroup = document.getElementById('btn-group');
         const heroSticker = document.getElementById('hero-sticker');
 
+        function setSticker(src) {
+            // First hide slightly to avoid flickering with old image
+            heroSticker.style.opacity = '0';
+            setTimeout(() => {
+                heroSticker.src = src;
+                heroSticker.onload = () => {
+                    heroSticker.style.opacity = '1';
+                };
+            }, 50);
+        }
+
         function showInitial() {
             const contentArea = document.querySelector('.content-area');
             contentArea.classList.remove('state-no', 'state-yes');
@@ -104,7 +123,7 @@
 
             mainTitle.innerText = "KNOCK KNOCK!!";
             questionText.innerHTML = "Are you free??";
-            heroSticker.src = "cat.png";
+            setSticker("cat.png");
             btnGroup.innerHTML = `
                 <button class="btn btn-yes" id="btn-yes">Yes</button>
                 <button class="btn btn-no" id="btn-no">No</button>
@@ -121,7 +140,7 @@
 
             mainTitle.innerText = "UH OH!!";
             questionText.innerHTML = "I know that you are jobless.<br>Or Are you texting someone else at this hour";
-            heroSticker.src = "cat3.png";
+            setSticker("cat3.png");
             btnGroup.innerHTML = `
                 <button class="btn btn-no" id="btn-back" style="width: 100%;">Go Back </button>
             `;
@@ -135,7 +154,7 @@
 
             mainTitle.innerText = "YAYYYY!!";
             questionText.innerHTML = "I have a surprise for you";
-            heroSticker.src = "cat2.png";
+            setSticker("cat2.png");
             btnGroup.innerHTML = `
                 <button class="btn btn-yes" id="btn-reveal" style="width: 100%;">YESSS! </button>
                 <button class="btn btn-no" id="btn-no-from-yes" style="width: 100%; margin-top: 10px; padding: 10px 30px; font-size: 1.2rem;">No</button>
@@ -151,7 +170,7 @@
 
             mainTitle.innerText = "HMPH!!";
             questionText.innerHTML = "So you don't love me?? ";
-            heroSticker.src = "cat6.png"; 
+            setSticker("cat6.png"); 
             btnGroup.innerHTML = `
                 <button class="btn btn-no" id="btn-back-sad" style="width: 100%;">Go Backkk!</button>
             `;
@@ -165,7 +184,7 @@
 
             mainTitle.innerText = "WAIT...";
             questionText.innerHTML = "Are you excited? ";
-            heroSticker.src = "cat4.png"; 
+            setSticker("cat4.png"); 
             
             // Remove YESSS! button and add Final Click Button
             btnGroup.innerHTML = `
@@ -189,7 +208,7 @@
 
             mainTitle.innerText = "HAPPY BIRTHDAY THEE !!";
             questionText.innerHTML = "Wishing you the best day ever! ";
-            heroSticker.src = "cat7.png";
+            setSticker("cat7.png");
             btnGroup.innerHTML = '';
 
             // Show the button after 4 seconds
