@@ -210,7 +210,19 @@ html {
 
 /* cat4 is bigger on the "Excited" page */
 .state-excited .hero-cat {
-    max-width: 500px; /* Increased size for the new sticker */
+    max-width: 750px; /* Even bigger as requested */
+    filter: none;     /* Keeping it clear/exact */
+    mix-blend-mode: normal;
+}
+
+/* 5. Sad State (So you don't love me) */
+.state-sad .cat-container {
+    top: 25%;
+    left: 65%;
+}
+
+.state-sad .hero-cat {
+    max-width: 400px;
 }
 
 /* ------------------------------------------------------ */

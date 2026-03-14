@@ -140,8 +140,22 @@
                 <button class="btn btn-yes" id="btn-reveal" style="width: 100%;">YESSS! </button>
                 <button class="btn btn-no" id="btn-no-from-yes" style="width: 100%; margin-top: 10px; padding: 10px 30px; font-size: 1.2rem;">No</button>
             `;
-            document.getElementById('btn-no-from-yes').addEventListener('click', showNoState);
+            document.getElementById('btn-no-from-yes').addEventListener('click', showSadState);
             document.getElementById('btn-reveal').addEventListener('click', showExcitedState);
+        }
+
+        function showSadState() {
+            const contentArea = document.querySelector('.content-area');
+            contentArea.classList.remove('state-initial', 'state-no', 'state-yes', 'state-excited');
+            contentArea.classList.add('state-sad');
+
+            mainTitle.innerText = "HMPH!!";
+            questionText.innerHTML = "So you don't love me?? ";
+            heroSticker.src = "cat3.png"; 
+            btnGroup.innerHTML = `
+                <button class="btn btn-no" id="btn-back-sad" style="width: 100%;">Go Backkk!</button>
+            `;
+            document.getElementById('btn-back-sad').addEventListener('click', showYesState);
         }
 
         function showExcitedState() {
