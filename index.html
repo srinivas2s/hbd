@@ -98,6 +98,10 @@
         const heroSticker = document.getElementById('hero-sticker');
 
         function showInitial() {
+            const contentArea = document.querySelector('.content-area');
+            contentArea.classList.remove('state-no', 'state-yes');
+            contentArea.classList.add('state-initial');
+
             mainTitle.innerText = "KNOCK KNOCK!!";
             questionText.innerHTML = "Are you free??";
             heroSticker.src = "cat.png";
@@ -111,6 +115,10 @@
         }
 
         function showNoState() {
+            const contentArea = document.querySelector('.content-area');
+            contentArea.classList.remove('state-initial', 'state-yes');
+            contentArea.classList.add('state-no');
+
             mainTitle.innerText = "UH OH!!";
             questionText.innerHTML = "I know that you are jobless😒.<br>Or Are you texting someone else at this hour😱";
             heroSticker.src = "angry_cat.png";
@@ -121,6 +129,10 @@
         }
 
         function showYesState() {
+            const contentArea = document.querySelector('.content-area');
+            contentArea.classList.remove('state-initial', 'state-no');
+            contentArea.classList.add('state-yes');
+
             mainTitle.innerText = "YAYYYY!!";
             questionText.innerHTML = "I have a surprise for you🫣🙈<br>Are you excited ?🤭";
             heroSticker.src = "cat.png"; 

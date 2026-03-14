@@ -174,17 +174,33 @@ html {
 .cat-container {
     position: absolute;
     z-index: 20;
-    /* --- STICKER POSITIONING --- */
-    /* Adjust these values to move the cat sticker anywhere! */
-    top: 4%;
-    /* Move up or down (0% to 100%) */
-    left: 58%;
-    /* Move left or right (0% to 100%) */
-    /* --------------------------- */
 }
 
+/* --- STICKER POSITIONING (Independent for each page) --- */
+
+/* 1. Initial State (KNOCK KNOCK) */
+.state-initial .cat-container {
+    top: 50%;
+    left: 58%;
+}
+
+/* 2. "No" State (UH OH) */
+.state-no .cat-container {
+    top: 40%;
+    left: 60%;
+}
+
+/* 3. "Yes" State (YAYYYY) */
+.state-yes .cat-container {
+    top: 45%;
+    left: 65%;
+}
+
+/* ------------------------------------------------------ */
+
+
 .hero-cat {
-    max-width: 320px;
+    max-width: 220px;
     width: 100%;
     filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.1));
     transition: transform 0.3s ease;
