@@ -78,19 +78,63 @@
     <div class="content-area">
         <div class="hero-section">
             <div class="text-content">
-                <h1 class="hey-title">HEY!!</h1>
-                <p class="subtitle-bold">I made something for you</p>
-                <p class="question-thin">Do you want to see?</p>
-                <div class="button-group">
-                    <button class="btn btn-yes">Yes</button>
-                    <button class="btn btn-no">No</button>
+                <h1 class="hey-title" id="main-title">KNOCK KNOCK!!</h1>
+                <p class="subtitle-bold" id="question-text">Are you free??</p>
+                <div class="button-group" id="btn-group">
+                    <button class="btn btn-yes" id="btn-yes">Yes</button>
+                    <button class="btn btn-no" id="btn-no">No</button>
                 </div>
             </div>
             <div class="cat-container">
-                <img src="cat.png" alt="Happy Cat" class="hero-cat side-cat">
+                <img src="cat.png" alt="Happy Cat" class="hero-cat side-cat" id="hero-sticker">
             </div>
         </div>
     </div>
+
+    <script>
+        const questionText = document.getElementById('question-text');
+        const mainTitle = document.getElementById('main-title');
+        const btnGroup = document.getElementById('btn-group');
+        const heroSticker = document.getElementById('hero-sticker');
+
+        function showInitial() {
+            mainTitle.innerText = "KNOCK KNOCK!!";
+            questionText.innerHTML = "Are you free??";
+            heroSticker.src = "cat.png";
+            btnGroup.innerHTML = `
+                <button class="btn btn-yes" id="btn-yes">Yes</button>
+                <button class="btn btn-no" id="btn-no">No</button>
+            `;
+            // Re-attach listeners since innerHTML replaces elements
+            document.getElementById('btn-yes').addEventListener('click', showYesState);
+            document.getElementById('btn-no').addEventListener('click', showNoState);
+        }
+
+        function showNoState() {
+            mainTitle.innerText = "UH OH!!";
+            questionText.innerHTML = "I know that you are jobless😒.<br>Or Are you texting someone else at this hour😱";
+            heroSticker.src = "angry_cat.png";
+            btnGroup.innerHTML = `
+                <button class="btn btn-no" id="btn-back" style="width: 100%;">Go Back 🥺</button>
+            `;
+            document.getElementById('btn-back').addEventListener('click', showInitial);
+        }
+
+        function showYesState() {
+            mainTitle.innerText = "YAYYYY!!";
+            questionText.innerHTML = "I have a surprise for you🫣🙈<br>Are you excited ?🤭";
+            heroSticker.src = "cat.png"; 
+            btnGroup.innerHTML = `
+                <button class="btn btn-yes" id="btn-reveal" style="width: 100%;">YESSS! 😍</button>
+                <button class="btn btn-no" id="btn-no-from-yes" style="width: 100%; margin-top: 10px; padding: 10px 30px; font-size: 1.2rem;">No</button>
+            `;
+            document.getElementById('btn-no-from-yes').addEventListener('click', showNoState);
+            // placeholder for reveal if needed later
+        }
+
+        // Initialize listeners
+        showInitial();
+    </script>
 
 </body>
 

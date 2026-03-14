@@ -163,7 +163,6 @@ html {
     cursor: pointer;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
-    text-decoration: underline;
 }
 
 .btn:hover {
@@ -177,9 +176,9 @@ html {
     z-index: 20;
     /* --- STICKER POSITIONING --- */
     /* Adjust these values to move the cat sticker anywhere! */
-    top: 8%;
+    top: 4%;
     /* Move up or down (0% to 100%) */
-    left: 60%;
+    left: 58%;
     /* Move left or right (0% to 100%) */
     /* --------------------------- */
 }
