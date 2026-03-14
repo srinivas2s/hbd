@@ -120,10 +120,10 @@
             contentArea.classList.add('state-no');
 
             mainTitle.innerText = "UH OH!!";
-            questionText.innerHTML = "I know that you are jobless😒.<br>Or Are you texting someone else at this hour😱";
-            heroSticker.src = "cat2.png";
+            questionText.innerHTML = "I know that you are jobless.<br>Or Are you texting someone else at this hour";
+            heroSticker.src = "cat3.png";
             btnGroup.innerHTML = `
-                <button class="btn btn-no" id="btn-back" style="width: 100%;">Go Back 🥺</button>
+                <button class="btn btn-no" id="btn-back" style="width: 100%;">Go Back </button>
             `;
             document.getElementById('btn-back').addEventListener('click', showInitial);
         }
@@ -134,10 +134,10 @@
             contentArea.classList.add('state-yes');
 
             mainTitle.innerText = "YAYYYY!!";
-            questionText.innerHTML = "I have a surprise for you🫣🙈<br>Are you excited ?🤭";
-            heroSticker.src = "cat.png";
+            questionText.innerHTML = "I have a surprise for you<br>Are you excited ?";
+            heroSticker.src = "cat2.png";
             btnGroup.innerHTML = `
-                <button class="btn btn-yes" id="btn-reveal" style="width: 100%;">YESSS! 😍</button>
+                <button class="btn btn-yes" id="btn-reveal" style="width: 100%;">YESSS!</button>
                 <button class="btn btn-no" id="btn-no-from-yes" style="width: 100%; margin-top: 10px; padding: 10px 30px; font-size: 1.2rem;">No</button>
             `;
             document.getElementById('btn-no-from-yes').addEventListener('click', showNoState);
