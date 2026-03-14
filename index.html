@@ -175,7 +175,7 @@
             `;
             
             document.getElementById('btn-final-click').addEventListener('click', function() {
-                showFinalSurprise();
+                window.location.href = 'envelope.html';
             });
         }
 
@@ -186,10 +186,15 @@
 
             mainTitle.innerText = "HAPPY BIRTHDAY THEE !!";
             questionText.innerHTML = "Wishing you the best day ever! ";
-            heroSticker.src = "cat7.png"; // Or a special hbd cat if available
-            btnGroup.innerHTML = `
-                <button class="btn btn-yes" onclick="window.location.href='envelope.html'" style="width: 100%;">Click here </button>
-            `;
+            heroSticker.src = "cat7.png";
+            btnGroup.innerHTML = '';
+
+            // Show the button after 4 seconds
+            setTimeout(() => {
+                btnGroup.innerHTML = `
+                    <button class="btn btn-yes" onclick="window.location.href='envelope.html'" style="width: 100%; opacity: 0; animation: btnFadeIn 1s ease-out forwards;">Click here </button>
+                `;
+            }, 4000);
         }
 
         // Initialize listeners
