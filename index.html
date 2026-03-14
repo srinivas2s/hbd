@@ -175,7 +175,10 @@
             `;
             
             document.getElementById('btn-final-click').addEventListener('click', function() {
-                window.location.href = 'envelope.html';
+                // Add a very slight delay to ensure a smooth transition even if the browser is busy
+                setTimeout(() => {
+                    window.location.href = 'envelope.html';
+                }, 100);
             });
         }
 
@@ -196,6 +199,17 @@
                 `;
             }, 4000);
         }
+
+        // Preload all images to prevent "blank" moments on Vercel
+        const imagesToPreload = [
+            'cat.png', 'cat2.png', 'cat3.png', 'cat4.png', 'cat6.png', 'cat7.png',
+            'envelope.png', 'jj1.png', 'jj2.png', 'jj3.png', 'jj4.png', 'jj5.png', 'jj6.png', 'jj7.png'
+        ];
+
+        imagesToPreload.forEach(src => {
+            const img = new Image();
+            img.src = src;
+        });
 
         // Initialize listeners
         showInitial();
