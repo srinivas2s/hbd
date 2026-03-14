@@ -229,14 +229,16 @@ html {
 }
 
 /* 6. Final Surprise State (HAPPY BIRTHDAY) */
+/* ─── CHANGE THESE VALUES TO MOVE THE CAT ─── */
+/*   top:  0% = very top,  50% = middle,  100% = bottom   */
+/*   left: 0% = far left,  50% = center,  100% = far right */
 .state-final-surprise .cat-container {
-    top: 10%;
-    left: 75%;
+    top: 30%;       /* ← change this to move cat UP / DOWN   */
+    left: 75%;      /* ← change this to move cat LEFT / RIGHT */
 }
 
 .state-final-surprise .hero-cat {
-    max-width: 280px;
-    
+    max-width: 280px;  /* ← change this to resize the cat */
 }
 
 /* ------------------------------------------------------ */
