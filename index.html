@@ -151,7 +151,7 @@
 
             mainTitle.innerText = "HMPH!!";
             questionText.innerHTML = "So you don't love me?? ";
-            heroSticker.src = "cat3.png"; 
+            heroSticker.src = "cat6.png"; 
             btnGroup.innerHTML = `
                 <button class="btn btn-no" id="btn-back-sad" style="width: 100%;">Go Backkk!</button>
             `;
@@ -166,10 +166,48 @@
             mainTitle.innerText = "WAIT...";
             questionText.innerHTML = "Are you excited? ";
             heroSticker.src = "cat4.png"; 
+            
+            // Remove YESSS! button and add 3D Gift Box
             btnGroup.innerHTML = `
-                <button class="btn btn-yes" id="btn-final" style="width: 100%;">YESSS!</button>
+                <div class="gift-section" style="display: flex; flex-direction: column; align-items: center;">
+                    <p class="click-note">Click Here! </p>
+                    <div class="gift-container" id="gift-box-click">
+                        <div class="gift-box">
+                            <div class="side front"></div>
+                            <div class="side back"></div>
+                            <div class="side left"></div>
+                            <div class="side right"></div>
+                            <div class="side top">
+                                <div class="bow">
+                                    <div class="bow-left"></div>
+                                    <div class="bow-right"></div>
+                                </div>
+                            </div>
+                            <div class="side bottom"></div>
+                        </div>
+                    </div>
+                </div>
             `;
-            // You can add another state for btn-final later if you want!
+            
+            document.getElementById('gift-box-click').addEventListener('click', function() {
+                this.classList.add('open');
+                setTimeout(() => {
+                    showFinalSurprise();
+                }, 800);
+            });
+        }
+
+        function showFinalSurprise() {
+            const contentArea = document.querySelector('.content-area');
+            contentArea.classList.remove('state-excited');
+            contentArea.classList.add('state-final-surprise');
+
+            mainTitle.innerText = "HAPPY BIRTHDAY!!";
+            questionText.innerHTML = "Wishing you the best day ever! ";
+            heroSticker.src = "cat2.png"; // Or a special hbd cat if available
+            btnGroup.innerHTML = `
+                <button class="btn btn-yes" onclick="location.reload()" style="width: 100%;">Replay?  </button>
+            `;
         }
 
         // Initialize listeners
