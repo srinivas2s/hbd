@@ -20,6 +20,7 @@
             min-height: 100vh;
             overflow-x: hidden;
             font-family: 'Caveat', cursive;
+            scroll-behavior: smooth;
         }
 
         /* ===== Deep Pink Gradient Background ===== */
@@ -28,7 +29,6 @@
             background: linear-gradient(160deg, #a8213a 0%, #c2294a 25%, #d4345a 50%, #b52545 75%, #9e1e3a 100%);
             position: relative;
             overflow: hidden;
-            padding-bottom: 60px;
         }
 
         /* Subtle overlay texture */
@@ -76,44 +76,69 @@
             50% { transform: translateY(-20px) scale(1.1); opacity: 0.6; }
         }
 
-        /* ===== Clothesline Section ===== */
-        .clothesline-section {
+        /* ===== Stars / sparkle accents ===== */
+        .sparkle-accent {
+            position: fixed;
+            font-size: 1.5rem;
+            opacity: 0;
+            animation: sparkleShow 4s ease-in-out infinite;
+            z-index: 5;
+        }
+
+        .sparkle-accent:nth-child(1) { top: 8%; right: 10%; animation-delay: 0s; }
+        .sparkle-accent:nth-child(2) { top: 50%; right: 5%; animation-delay: 1.5s; }
+        .sparkle-accent:nth-child(3) { bottom: 20%; left: 8%; animation-delay: 3s; }
+        .sparkle-accent:nth-child(4) { top: 15%; left: 12%; animation-delay: 2s; font-size: 1.2rem; }
+
+        @keyframes sparkleShow {
+            0%, 100% { opacity: 0; transform: scale(0.5) rotate(0deg); }
+            50% { opacity: 0.7; transform: scale(1.2) rotate(20deg); }
+        }
+
+        /* ===== MEMORY GALLERY ===== */
+        .memory-gallery {
             position: relative;
             z-index: 10;
-            padding: 60px 40px 40px;
+            padding: 20px 0 0;
+        }
+
+        /* Each memory row = full viewport height, photo left + quote right */
+        .memory-row {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 60px;
+            gap: 60px;
+            position: relative;
+        }
+
+        /* ===== Left side: Polaroid on rope ===== */
+        .memory-photo-side {
+            flex: 0 0 320px;
             display: flex;
             flex-direction: column;
             align-items: center;
-        }
-
-        /* The rope/string */
-        .clothesline {
             position: relative;
-            width: 85%;
-            max-width: 900px;
-            height: 350px;
-            margin: 0 auto;
         }
 
-        .rope {
-            position: absolute;
-            top: 20px;
-            left: -20px;
-            right: -20px;
+        /* The rope segment for each photo */
+        .rope-segment {
+            width: 360px;
             height: 4px;
             background: linear-gradient(90deg, 
                 transparent 0%, 
-                rgba(210, 180, 140, 0.9) 5%, 
+                rgba(210, 180, 140, 0.9) 10%, 
                 rgba(180, 150, 110, 0.95) 50%, 
-                rgba(210, 180, 140, 0.9) 95%, 
+                rgba(210, 180, 140, 0.9) 90%, 
                 transparent 100%);
             border-radius: 2px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-            z-index: 1;
+            position: relative;
+            margin-bottom: 0;
         }
 
-        /* Slight rope curve using pseudo-element */
-        .rope::after {
+        .rope-segment::after {
             content: '';
             position: absolute;
             top: -1px;
@@ -127,33 +152,30 @@
             border-radius: 2px;
         }
 
-        /* ===== Polaroid Photos ===== */
+        /* Polaroid card */
         .polaroid {
-            position: absolute;
-            top: 30px;
             background: rgb(232, 129, 144);
             padding: 12px 12px 40px 12px;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25),
                         0 3px 8px rgba(0, 0, 0, 0.15);
-            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-            z-index: 5;
             cursor: pointer;
+            position: relative;
+            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
         .polaroid:hover {
-            transform: scale(1.08) !important;
-            z-index: 20;
+            transform: scale(1.05) rotate(0deg) !important;
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
         }
 
         .polaroid img {
-            width: 200px;
-            height: 180px;
+            width: 240px;
+            height: 210px;
             object-fit: cover;
             display: block;
         }
 
-        /* Clip/pin on top of each polaroid */
+        /* Clip/pin */
         .clip {
             position: absolute;
             top: -18px;
@@ -183,53 +205,13 @@
             border-radius: 1px;
         }
 
-        /* Position each polaroid along the line */
-        .polaroid:nth-child(1) {
-            left: 5%;
-            transform: rotate(-5deg);
-            animation: swingIn 1s ease-out 0.2s both;
-        }
-
-        .polaroid:nth-child(2) {
-            left: 35%;
-            transform: rotate(3deg);
-            animation: swingIn 1s ease-out 0.5s both;
-        }
-
-        .polaroid:nth-child(3) {
-            left: 65%;
-            transform: rotate(-3deg);
-            animation: swingIn 1s ease-out 0.8s both;
-        }
-
-        @keyframes swingIn {
-            0% {
-                opacity: 0;
-                transform: rotate(0deg) translateY(-50px);
-            }
-            60% {
-                opacity: 1;
-            }
-            100% {
-                opacity: 1;
-            }
-        }
-
-        .polaroid:nth-child(1) { animation: swingIn 1s ease-out 0.2s both, swing1 4s ease-in-out 1.2s infinite; }
-        .polaroid:nth-child(2) { animation: swingIn 1s ease-out 0.5s both, swing2 4.5s ease-in-out 1.5s infinite; }
-        .polaroid:nth-child(3) { animation: swingIn 1s ease-out 0.8s both, swing3 4s ease-in-out 1.8s infinite; }
-
-        @keyframes swing1 {
-            0%, 100% { transform: rotate(-5deg); }
-            50% { transform: rotate(-2deg); }
-        }
-        @keyframes swing2 {
-            0%, 100% { transform: rotate(3deg); }
-            50% { transform: rotate(5deg); }
-        }
-        @keyframes swing3 {
-            0%, 100% { transform: rotate(-3deg); }
-            50% { transform: rotate(-1deg); }
+        /* Photo caption */
+        .polaroid-caption {
+            text-align: center;
+            font-family: 'Caveat', cursive;
+            font-size: 1.1rem;
+            color: #cd4040;
+            margin-top: 8px;
         }
 
         /* Small hearts near polaroids */
@@ -249,13 +231,132 @@
             50% { transform: scale(1.3); }
         }
 
+        /* Gentle swing animation for hanging polaroids */
+        @keyframes gentleSwing {
+            0%, 100% { transform: rotate(-4deg); }
+            50% { transform: rotate(2deg); }
+        }
+
+        .polaroid-wrapper {
+            animation: gentleSwing 4s ease-in-out infinite;
+            transform-origin: top center;
+        }
+
+        /* ===== Right side: Quote ===== */
+        .memory-quote-side {
+            flex: 1;
+            max-width: 500px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+        }
+
+        .quote-text {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.6rem;
+            color: rgba(255, 230, 235, 0.95);
+            line-height: 1.5;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .quote-text::before {
+            content: '"';
+            position: absolute;
+            left: -10px;
+            top: -20px;
+            font-size: 5rem;
+            color: rgba(255, 160, 180, 0.4);
+            font-family: 'Georgia', serif;
+            line-height: 1;
+        }
+
+        .quote-author {
+            font-family: 'Caveat', cursive;
+            font-size: 1.4rem;
+            color: rgba(255, 200, 210, 0.7);
+            margin-top: 15px;
+            padding-left: 30px;
+            letter-spacing: 2px;
+        }
+
+        .quote-hearts {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+            padding-left: 30px;
+        }
+
+        .quote-hearts span {
+            font-size: 1.5rem;
+            animation: floatMiniHeart 3s ease-in-out infinite;
+        }
+
+        .quote-hearts span:nth-child(1) { animation-delay: 0s; }
+        .quote-hearts span:nth-child(2) { animation-delay: 0.5s; }
+        .quote-hearts span:nth-child(3) { animation-delay: 1s; }
+
+        @keyframes floatMiniHeart {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        /* ===== SCROLL ANIMATIONS ===== */
+        /* Photo slides from right to left */
+        .memory-photo-side {
+            opacity: 0;
+            transform: translateX(200px);
+            transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .memory-photo-side.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Quote fades in from right */
+        .memory-quote-side {
+            opacity: 0;
+            transform: translateX(100px);
+            transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s;
+        }
+
+        .memory-quote-side.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* ===== Divider between sections ===== */
+        .section-divider {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            padding: 10px 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        .section-divider .divider-line {
+            width: 80px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,180,195,0.5), transparent);
+        }
+
+        .section-divider .divider-heart {
+            color: rgba(255, 180, 195, 0.5);
+            font-size: 1rem;
+            animation: heartPop 3s ease-in-out infinite;
+        }
+
         /* ===== "I LOVE YOU" Section ===== */
         .love-section {
             position: relative;
             z-index: 10;
             text-align: center;
-            margin-top: 30px;
-            padding: 0 20px;
+            padding: 60px 20px 20px;
         }
 
         .love-text {
@@ -268,7 +369,6 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            animation: loveAppear 1s ease-out 1s both;
             position: relative;
         }
 
@@ -286,12 +386,6 @@
             45% { transform: scale(1.1); }
         }
 
-        @keyframes loveAppear {
-            from { opacity: 0; transform: translateY(30px) scale(0.8); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
-        }
-
-        /* Smaller sub-hearts around the text */
         .love-section .mini-hearts {
             display: flex;
             justify-content: center;
@@ -310,18 +404,13 @@
         .mini-heart:nth-child(3) { animation-delay: 1.2s; }
         .mini-heart:nth-child(4) { animation-delay: 1.8s; }
 
-        @keyframes floatMiniHeart {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
-        }
-
-        /* ===== Message Below ===== */
+        /* ===== Final Message ===== */
         .love-message {
             text-align: center;
             margin-top: 25px;
+            padding-bottom: 80px;
             position: relative;
             z-index: 10;
-            animation: fadeInUp 1s ease-out 1.5s both;
         }
 
         .love-message p {
@@ -333,9 +422,16 @@
             margin: 0 auto;
         }
 
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* Animate love section & message on scroll */
+        .love-section, .love-message {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease-out;
+        }
+
+        .love-section.visible, .love-message.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* ===== Cake decoration ===== */
@@ -355,7 +451,33 @@
             75% { transform: translateY(-4px) rotate(3deg); }
         }
 
-        /* ===== Confetti on page load ===== */
+        /* ===== Scroll indicator ===== */
+        .scroll-indicator {
+            position: fixed;
+            bottom: 30px;
+            right: 40px;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            color: rgba(255, 200, 210, 0.6);
+            font-family: 'Caveat', cursive;
+            font-size: 1rem;
+            animation: scrollBounce 2s ease-in-out infinite;
+            transition: opacity 0.5s;
+        }
+
+        .scroll-indicator .arrow {
+            font-size: 1.4rem;
+        }
+
+        @keyframes scrollBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(8px); }
+        }
+
+        /* ===== Confetti ===== */
         .confetti-container {
             position: fixed;
             top: 0; left: 0;
@@ -371,36 +493,53 @@
             opacity: 0;
         }
 
-        /* ===== Stars / sparkle accents ===== */
-        .sparkle-accent {
-            position: fixed;
-            font-size: 1.5rem;
-            opacity: 0;
-            animation: sparkleShow 4s ease-in-out infinite;
-            z-index: 5;
-        }
+        /* ===== Responsive ===== */
+        @media (max-width: 900px) {
+            .memory-row {
+                flex-direction: column;
+                padding: 40px 20px;
+                gap: 30px;
+                min-height: auto;
+                padding-top: 60px;
+                padding-bottom: 60px;
+            }
 
-        .sparkle-accent:nth-child(1) { top: 8%; right: 10%; animation-delay: 0s; }
-        .sparkle-accent:nth-child(2) { top: 50%; right: 5%; animation-delay: 1.5s; }
-        .sparkle-accent:nth-child(3) { bottom: 20%; left: 8%; animation-delay: 3s; }
-        .sparkle-accent:nth-child(4) { top: 15%; left: 12%; animation-delay: 2s; font-size: 1.2rem; }
+            .memory-photo-side {
+                flex: none;
+            }
 
-        @keyframes sparkleShow {
-            0%, 100% { opacity: 0; transform: scale(0.5) rotate(0deg); }
-            50% { opacity: 0.7; transform: scale(1.2) rotate(20deg); }
-        }
+            .memory-quote-side {
+                max-width: 100%;
+                align-items: center;
+                text-align: center;
+            }
 
-        /* Photo caption */
-        .polaroid-caption {
-            text-align: center;
-            font-family: 'Caveat', cursive;
-            font-size: 1rem;
-            color: #cd4040;
-            margin-top: 8px;
-        }
+            .quote-text {
+                font-size: 2rem;
+                padding-left: 0;
+                text-align: center;
+            }
 
-        /* Responsive */
-        @media (max-width: 768px) {
+            .quote-text::before {
+                left: 50%;
+                transform: translateX(-50%);
+                top: -30px;
+            }
+
+            .quote-author, .quote-hearts {
+                padding-left: 0;
+                justify-content: center;
+            }
+
+            .quote-author {
+                text-align: center;
+                width: 100%;
+            }
+
+            .quote-hearts {
+                width: 100%;
+            }
+
             .love-text {
                 font-size: 3.5rem;
                 letter-spacing: 4px;
@@ -410,48 +549,38 @@
                 font-size: 2.5rem;
             }
 
-            .polaroid img {
-                width: 140px;
-                height: 130px;
-            }
-
-            .clothesline {
-                width: 95%;
-                height: 280px;
-            }
-
             .love-message p {
                 font-size: 1.4rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .polaroid img {
+                width: 180px;
+                height: 160px;
+            }
+
+            .rope-segment {
+                width: 280px;
+            }
+
+            .love-text {
+                font-size: 2.5rem;
+                letter-spacing: 2px;
+            }
+
+            .quote-text {
+                font-size: 1.6rem;
+            }
+
+            .polaroid {
+                padding: 10px 10px 35px 10px;
             }
 
             .cake-icon {
                 font-size: 3rem;
                 left: 20px;
                 bottom: 20px;
-            }
-
-            .clothesline-section {
-                padding: 40px 15px 20px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .love-text {
-                font-size: 2.5rem;
-                letter-spacing: 2px;
-            }
-
-            .polaroid img {
-                width: 100px;
-                height: 90px;
-            }
-
-            .polaroid {
-                padding: 8px 8px 30px 8px;
-            }
-
-            .clothesline {
-                height: 220px;
             }
         }
     </style>
@@ -480,39 +609,135 @@
         <span class="sparkle-accent">✨</span>
         <span class="sparkle-accent">⭐</span>
 
-        <!-- Clothesline with Photos -->
-        <div class="clothesline-section">
-            <div class="clothesline">
-                <div class="rope"></div>
+        <!-- ===== MEMORY GALLERY ===== -->
+        <div class="memory-gallery">
 
-                <!-- Photo 1 -->
-                <div class="polaroid">
-                    <div class="clip"><div class="clip-body"></div></div>
-                    <img src="photo1.jpg" alt="Memory 1" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22180%22><rect fill=%22%23fce4ec%22 width=%22200%22 height=%22180%22/><text x=%2250%%22 y=%2250%%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-size=%2240%22>📸</text></svg>'">
-                    <p class="polaroid-caption">Us 💕</p>
-                    <span class="photo-heart left">♥</span>
+            <!-- Memory 1 -->
+            <div class="memory-row" id="memory1">
+                <div class="memory-photo-side">
+                    <div class="rope-segment"></div>
+                    <div class="polaroid-wrapper">
+                        <div class="polaroid" style="transform: rotate(-4deg);">
+                            <div class="clip"><div class="clip-body"></div></div>
+                            <img src="photo1.jpg" alt="Memory 1" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22240%22 height=%22210%22><rect fill=%22%23fce4ec%22 width=%22240%22 height=%22210%22/><text x=%2250%%22 y=%2250%%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-size=%2250%22>💕</text></svg>'">
+                            <p class="polaroid-caption">Forever 💝</p>
+                            <span class="photo-heart left">♥</span>
+                        </div>
+                    </div>
                 </div>
-
-                <!-- Photo 2 -->
-                <div class="polaroid">
-                    <div class="clip"><div class="clip-body"></div></div>
-                    <img src="photo2.jpg" alt="Memory 2" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22180%22><rect fill=%22%23f3e5f5%22 width=%22200%22 height=%22180%22/><text x=%2250%%22 y=%2250%%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-size=%2240%22>🥰</text></svg>'">
-                    <p class="polaroid-caption">Together 💗</p>
-                    <span class="photo-heart right">♥</span>
-                </div>
-
-                <!-- Photo 3 -->
-                <div class="polaroid">
-                    <div class="clip"><div class="clip-body"></div></div>
-                    <img src="photo3.jpg" alt="Memory 3" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22180%22><rect fill=%22%23fce4ec%22 width=%22200%22 height=%22180%22/><text x=%2250%%22 y=%2250%%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-size=%2240%22>💖</text></svg>'">
-                    <p class="polaroid-caption">Forever 💝</p>
-                    <span class="photo-heart left">♥</span>
+                <div class="memory-quote-side">
+                    <div class="quote-text">
+                        You don't know how much you mean to me... every heartbeat whispers your name
+                    </div>
+                    <div class="quote-author">— for you, always ♡</div>
+                    <div class="quote-hearts">
+                        <span>💕</span>
+                        <span>💗</span>
+                        <span>💕</span>
+                    </div>
                 </div>
             </div>
+
+            <div class="section-divider">
+                <div class="divider-line"></div>
+                <span class="divider-heart">♥</span>
+                <div class="divider-line"></div>
+            </div>
+
+            <!-- Memory 2 -->
+            <div class="memory-row" id="memory2">
+                <div class="memory-photo-side">
+                    <div class="rope-segment"></div>
+                    <div class="polaroid-wrapper" style="animation-delay: 0.5s;">
+                        <div class="polaroid" style="transform: rotate(3deg);">
+                            <div class="clip"><div class="clip-body"></div></div>
+                            <img src="photo2.jpg" alt="Memory 2" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22240%22 height=%22210%22><rect fill=%22%23f3e5f5%22 width=%22240%22 height=%22210%22/><text x=%2250%%22 y=%2250%%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-size=%2250%22>📸</text></svg>'">
+                            <p class="polaroid-caption">Us 💕</p>
+                            <span class="photo-heart right">♥</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="memory-quote-side">
+                    <div class="quote-text">
+                        Every moment with you is a gift I cherish... you are my favorite adventure
+                    </div>
+                    <div class="quote-author">— with all my love ♡</div>
+                    <div class="quote-hearts">
+                        <span>✨</span>
+                        <span>💖</span>
+                        <span>✨</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-divider">
+                <div class="divider-line"></div>
+                <span class="divider-heart">♥</span>
+                <div class="divider-line"></div>
+            </div>
+
+            <!-- Memory 3 -->
+            <div class="memory-row" id="memory3">
+                <div class="memory-photo-side">
+                    <div class="rope-segment"></div>
+                    <div class="polaroid-wrapper" style="animation-delay: 1s;">
+                        <div class="polaroid" style="transform: rotate(-2deg);">
+                            <div class="clip"><div class="clip-body"></div></div>
+                            <img src="photo3.jpg" alt="Memory 3" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22240%22 height=%22210%22><rect fill=%22%23fce4ec%22 width=%22240%22 height=%22210%22/><text x=%2250%%22 y=%2250%%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-size=%2250%22>🥰</text></svg>'">
+                            <p class="polaroid-caption">Together 💗</p>
+                            <span class="photo-heart left">♥</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="memory-quote-side">
+                    <div class="quote-text">
+                        My world became more beautiful the day you walked into it... I love you more each day
+                    </div>
+                    <div class="quote-author">— yours forever ♡</div>
+                    <div class="quote-hearts">
+                        <span>💗</span>
+                        <span>💕</span>
+                        <span>💗</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-divider">
+                <div class="divider-line"></div>
+                <span class="divider-heart">♥</span>
+                <div class="divider-line"></div>
+            </div>
+
+            <!-- Memory 4 -->
+            <div class="memory-row" id="memory4">
+                <div class="memory-photo-side">
+                    <div class="rope-segment"></div>
+                    <div class="polaroid-wrapper" style="animation-delay: 1.5s;">
+                        <div class="polaroid" style="transform: rotate(4deg);">
+                            <div class="clip"><div class="clip-body"></div></div>
+                            <img src="photo4.jpg" alt="Memory 4" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22240%22 height=%22210%22><rect fill=%22%23e8f5e9%22 width=%22240%22 height=%22210%22/><text x=%2250%%22 y=%2250%%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-size=%2250%22>💖</text></svg>'">
+                            <p class="polaroid-caption">My Love 💝</p>
+                            <span class="photo-heart right">♥</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="memory-quote-side">
+                    <div class="quote-text">
+                        You are the reason I believe in magic... Happy Birthday, my everything
+                    </div>
+                    <div class="quote-author">— now and always ♡</div>
+                    <div class="quote-hearts">
+                        <span>🎂</span>
+                        <span>💖</span>
+                        <span>🎂</span>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
         <!-- I LOVE YOU text -->
-        <div class="love-section">
+        <div class="love-section" id="loveSection">
             <div class="love-text">
                 I LOVE YOU <span class="heart-icon">❤️</span>
             </div>
@@ -525,7 +750,7 @@
         </div>
 
         <!-- Message -->
-        <div class="love-message">
+        <div class="love-message" id="loveMessage">
             <p>
                 You don't know how much you mean to me <br>
                 Every moment with you is a gift I cherish forever <br>
@@ -536,16 +761,84 @@
         <!-- Cake -->
         <div class="cake-icon">🎂</div>
 
+        <!-- Scroll indicator -->
+        <div class="scroll-indicator" id="scrollIndicator">
+            <span>scroll down</span>
+            <span class="arrow">↓</span>
+        </div>
+
         <!-- Confetti -->
         <div class="confetti-container" id="confettiContainer"></div>
     </div>
 
     <script>
-        // Launch confetti on page load
+        // ===== Intersection Observer for scroll animations =====
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.2
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Add 'visible' class to photo side and quote side
+                    const photoSide = entry.target.querySelector('.memory-photo-side');
+                    const quoteSide = entry.target.querySelector('.memory-quote-side');
+                    
+                    if (photoSide) photoSide.classList.add('visible');
+                    if (quoteSide) quoteSide.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all memory rows
+        document.querySelectorAll('.memory-row').forEach(row => {
+            observer.observe(row);
+        });
+
+        // Also observe love section and message
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.3 });
+
+        const loveSection = document.getElementById('loveSection');
+        const loveMessage = document.getElementById('loveMessage');
+        if (loveSection) sectionObserver.observe(loveSection);
+        if (loveMessage) sectionObserver.observe(loveMessage);
+
+        // Make first memory visible on load
         window.addEventListener('load', () => {
+            setTimeout(() => {
+                const firstRow = document.getElementById('memory1');
+                if (firstRow) {
+                    const photoSide = firstRow.querySelector('.memory-photo-side');
+                    const quoteSide = firstRow.querySelector('.memory-quote-side');
+                    if (photoSide) photoSide.classList.add('visible');
+                    if (quoteSide) quoteSide.classList.add('visible');
+                }
+            }, 300);
+
             launchConfetti();
         });
 
+        // Hide scroll indicator when user scrolls near bottom
+        window.addEventListener('scroll', () => {
+            const scrollIndicator = document.getElementById('scrollIndicator');
+            const scrollPercent = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+            
+            if (scrollPercent > 0.7) {
+                scrollIndicator.style.opacity = '0';
+            } else {
+                scrollIndicator.style.opacity = '1';
+            }
+        });
+
+        // ===== Confetti =====
         function launchConfetti() {
             const container = document.getElementById('confettiContainer');
             const colors = ['#e33051', '#f06292', '#ff8a80', '#ffcdd2', '#ffd54f', '#81d4fa', '#b39ddb', '#fff', '#ff4081', '#f8bbd0'];
@@ -558,26 +851,22 @@
                 const delay = Math.random() * 1.5;
                 const duration = 2.5 + Math.random() * 3;
                 const size = 5 + Math.random() * 10;
-                const rotation = Math.random() * 360;
                 const shape = Math.random();
 
                 piece.style.left = left + '%';
                 piece.style.animationDelay = delay + 's';
 
                 if (shape < 0.33) {
-                    // Circle
                     piece.style.width = size + 'px';
                     piece.style.height = size + 'px';
                     piece.style.backgroundColor = color;
                     piece.style.borderRadius = '50%';
                 } else if (shape < 0.66) {
-                    // Square
                     piece.style.width = size + 'px';
                     piece.style.height = size + 'px';
                     piece.style.backgroundColor = color;
                     piece.style.borderRadius = '2px';
                 } else {
-                    // Triangle
                     piece.style.width = '0';
                     piece.style.height = '0';
                     piece.style.backgroundColor = 'transparent';
@@ -591,7 +880,6 @@
 
                 piece.style.animation = `confettiFall-${i} ${duration}s ease-in ${delay}s forwards`;
 
-                // Create unique keyframes for each piece
                 const keyframes = `
                     @keyframes confettiFall-${i} {
                         0% {
@@ -613,7 +901,6 @@
 
                 container.appendChild(piece);
 
-                // Clean up
                 setTimeout(() => {
                     piece.remove();
                 }, (duration + delay) * 1000 + 500);
