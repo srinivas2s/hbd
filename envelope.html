@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Surprise</title>
+    <link rel="stylesheet" href="style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Caveat:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: var(--bg-cream);
+        }
+
+        /* ===== Envelope Page ===== */
+        .envelope-page {
+            position: relative;
+            z-index: 15;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 40px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .envelope-wrapper {
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .envelope-wrapper:hover {
+            transform: scale(1.03) translateY(-5px);
+        }
+
+        .envelope-wrapper:active {
+            transform: scale(0.98);
+        }
+
+        .envelope-img {
+            width: 380px;
+            max-width: 80vw;
+            border-radius: 12px;
+            filter: drop-shadow(0 15px 40px rgba(211, 49, 82, 0.2))
+                    drop-shadow(0 5px 15px rgba(0, 0, 0, 0.08));
+            transition: filter 0.3s ease;
+        }
+
+        .envelope-wrapper:hover .envelope-img {
+            filter: drop-shadow(0 20px 50px rgba(211, 49, 82, 0.3))
+                    drop-shadow(0 8px 20px rgba(0, 0, 0, 0.1));
+        }
+
+        /* Sparkle particles around envelope */
+        .sparkle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #e33051;
+            border-radius: 50%;
+            opacity: 0;
+            animation: sparkleFloat 3s ease-in-out infinite;
+        }
+
+        .sparkle:nth-child(1) { top: -10px; left: 20%; animation-delay: 0s; }
+        .sparkle:nth-child(2) { top: 10%; right: -10px; animation-delay: 0.5s; }
+        .sparkle:nth-child(3) { bottom: -10px; left: 40%; animation-delay: 1s; }
+        .sparkle:nth-child(4) { top: 30%; left: -10px; animation-delay: 1.5s; }
+        .sparkle:nth-child(5) { top: -10px; right: 30%; animation-delay: 2s; }
+        .sparkle:nth-child(6) { bottom: 20%; right: -10px; animation-delay: 0.8s; }
+
+        @keyframes sparkleFloat {
+            0%, 100% { opacity: 0; transform: scale(0) translateY(0); }
+            50% { opacity: 0.8; transform: scale(1.2) translateY(-10px); }
+        }
+
+        /* Pulsing glow behind envelope */
+        .envelope-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 420px;
+            height: 320px;
+            max-width: 85vw;
+            background: radial-gradient(ellipse, rgba(255, 182, 193, 0.35) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: glowPulse 3s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
+            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+        }
+
+        /* Tap Here Text */
+        .tap-text {
+            font-family: 'Caveat', cursive;
+            font-size: 2.8rem;
+            color: #333;
+            margin-top: 35px;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.5s forwards;
+            position: relative;
+        }
+
+        .tap-text::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #8c2a3d, transparent);
+            animation: underlineShimmer 2s ease-in-out infinite;
+        }
+
+        @keyframes underlineShimmer {
+            0%, 100% { opacity: 0.3; transform: scaleX(0.8); }
+            50% { opacity: 0.8; transform: scaleX(1); }
+        }
+
+        /* Small hearts floating */
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 5;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 1.2rem;
+            opacity: 0;
+            animation: heartFloat 6s ease-in-out infinite;
+            color: #e33051;
+        }
+
+        .heart:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .heart:nth-child(2) { left: 25%; animation-delay: 1.2s; font-size: 0.9rem; }
+        .heart:nth-child(3) { left: 45%; animation-delay: 2.5s; }
+        .heart:nth-child(4) { left: 65%; animation-delay: 0.8s; font-size: 1.5rem; }
+        .heart:nth-child(5) { left: 80%; animation-delay: 3s; font-size: 0.8rem; }
+        .heart:nth-child(6) { left: 90%; animation-delay: 1.8s; }
+        .heart:nth-child(7) { left: 35%; animation-delay: 4s; font-size: 1.1rem; }
+        .heart:nth-child(8) { left: 55%; animation-delay: 2s; }
+
+        @keyframes heartFloat {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { transform: translateY(-10vh) rotate(45deg); opacity: 0; }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== Letter Overlay (hidden initially) ===== */
+        .letter-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 100;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .letter-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .letter-card {
+            background: linear-gradient(135deg, #fff9fa, #fff0f3, #ffe8ee);
+            border-radius: 24px;
+            padding: 50px 45px;
+            max-width: 520px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 25px 80px rgba(211, 49, 82, 0.25),
+                        0 10px 30px rgba(0, 0, 0, 0.1);
+            transform: scale(0.5) translateY(50px);
+            animation: letterPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .letter-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #e33051, #f06292, #e33051);
+        }
+
+        @keyframes letterPop {
+            to { transform: scale(1) translateY(0); }
+        }
+
+        .letter-card h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.2rem;
+            color: #8c2a3d;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+        }
+
+        .letter-card p {
+            font-family: 'Caveat', cursive;
+            font-size: 1.6rem;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .letter-card .signature {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            color: #e33051;
+            margin-top: 25px;
+        }
+
+        .letter-card .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 1.5rem;
+            color: #ccc;
+            cursor: pointer;
+            transition: color 0.3s;
+            background: none;
+            border: none;
+            font-family: inherit;
+        }
+
+        .letter-card .close-btn:hover {
+            color: #e33051;
+        }
+
+        .confetti-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 101;
+            overflow: hidden;
+        }
+
+        .confetti-piece {
+            position: absolute;
+            top: -20px;
+            width: 10px;
+            height: 10px;
+            opacity: 0;
+        }
+
+        /* Envelope open animation */
+        .envelope-opening .envelope-img {
+            animation: envelopeOpen 0.8s ease-in-out forwards;
+        }
+
+        @keyframes envelopeOpen {
+            0% { transform: scale(1); }
+            30% { transform: scale(1.1) rotate(-3deg); }
+            60% { transform: scale(1.15) rotate(2deg); }
+            100% { transform: scale(0.9) translateY(-30px); opacity: 0.3; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Grid Background -->
+    <div class="grid-background"></div>
+
+    <!-- Left Wavy Border -->
+    <svg class="border-left" viewBox="0 0 400 1000" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <linearGradient id="leftGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#db2e50; stop-opacity:0.95" />
+                <stop offset="50%" style="stop-color:#eb5b75; stop-opacity:0.92" />
+                <stop offset="100%" style="stop-color:#df5470; stop-opacity:0.95" />
+            </linearGradient>
+        </defs>
+        <path d="
+            M0,0
+            L280,0
+            C320,15 340,50 310,100
+            C260,180 120,220 80,300
+            C40,380 50,420 90,480
+            C150,560 280,600 320,680
+            C360,760 350,840 300,900
+            C270,940 250,970 260,1000
+            L0,1000
+            Z
+        " fill="url(#leftGrad)" />
+    </svg>
+
+    <!-- Top-Right Corner Accent -->
+    <svg class="border-top-right" viewBox="0 0 500 500" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <linearGradient id="trGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#f44568; stop-opacity:0.9" />
+                <stop offset="100%" style="stop-color:#e0405d; stop-opacity:0.95" />
+            </linearGradient>
+        </defs>
+        <path d="
+            M280,0
+            C330,0 380,15 420,50
+            C465,90 490,160 500,220
+            L500,0
+            Z
+        " fill="url(#trGrad)" />
+    </svg>
+
+    <!-- Bottom-Right Corner Accent -->
+    <svg class="border-bottom-right" viewBox="0 0 600 600" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <linearGradient id="brGrad" x1="100%" y1="100%" x2="0%" y2="0%">
+                <stop offset="0%" style="stop-color:#e33051; stop-opacity:0.95" />
+                <stop offset="40%" style="stop-color:#e33051; stop-opacity:0.93" />
+                <stop offset="100%" style="stop-color:#e33051; stop-opacity:0.9" />
+            </linearGradient>
+        </defs>
+        <path d="
+            M600,280
+            C590,340 560,390 510,430
+            C440,480 350,510 280,530
+            C200,550 140,570 100,600
+            L600,600
+            Z
+        " fill="url(#brGrad)" />
+    </svg>
+
+    <!-- Floating Hearts -->
+    <div class="floating-hearts">
+        <span class="heart">♥</span>
+        <span class="heart">♥</span>
+        <span class="heart">♥</span>
+        <span class="heart">♥</span>
+        <span class="heart">♥</span>
+        <span class="heart">♥</span>
+        <span class="heart">♥</span>
+        <span class="heart">♥</span>
+    </div>
+
+    <!-- Envelope Section -->
+    <div class="envelope-page">
+        <div class="envelope-wrapper" id="envelope" onclick="openEnvelope()">
+            <div class="envelope-glow"></div>
+            <span class="sparkle"></span>
+            <span class="sparkle"></span>
+            <span class="sparkle"></span>
+            <span class="sparkle"></span>
+            <span class="sparkle"></span>
+            <span class="sparkle"></span>
+            <img src="envelope.png" alt="Birthday Envelope" class="envelope-img">
+        </div>
+        <p class="tap-text">Tap here to open</p>
+    </div>
+
+    <!-- Letter Overlay -->
+    <div class="letter-overlay" id="letterOverlay">
+        <div class="letter-card">
+            <button class="close-btn" onclick="closeEnvelope()">&times;</button>
+            <h2>Happy Birthday! 🎂</h2>
+            <p>
+                Wishing you the most amazing birthday ever! 🎉<br>
+                You deserve all the happiness in the world. ✨<br>
+                May your day be filled with love, laughter, and cake! 🍰
+            </p>
+            <p class="signature">With love ❤️</p>
+        </div>
+    </div>
+
+    <!-- Confetti Container -->
+    <div class="confetti-container" id="confettiContainer"></div>
+
+    <script>
+        function openEnvelope() {
+            const envelope = document.getElementById('envelope');
+            const overlay = document.getElementById('letterOverlay');
+
+            // Animate envelope opening
+            envelope.classList.add('envelope-opening');
+
+            // Show letter after envelope animation
+            setTimeout(() => {
+                overlay.style.display = 'flex';
+                // Trigger reflow
+                overlay.offsetHeight;
+                overlay.classList.add('active');
+                launchConfetti();
+            }, 600);
+        }
+
+        function closeEnvelope() {
+            const envelope = document.getElementById('envelope');
+            const overlay = document.getElementById('letterOverlay');
+
+            overlay.classList.remove('active');
+            setTimeout(() => {
+                overlay.style.display = 'none';
+                envelope.classList.remove('envelope-opening');
+            }, 500);
+        }
+
+        function launchConfetti() {
+            const container = document.getElementById('confettiContainer');
+            const colors = ['#e33051', '#f06292', '#ff8a80', '#ffcdd2', '#ffd54f', '#81d4fa', '#b39ddb', '#fff'];
+            const shapes = ['circle', 'square', 'triangle'];
+
+            for (let i = 0; i < 80; i++) {
+                const piece = document.createElement('div');
+                piece.className = 'confetti-piece';
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                const shape = shapes[Math.floor(Math.random() * shapes.length)];
+                const left = Math.random() * 100;
+                const delay = Math.random() * 0.8;
+                const duration = 2 + Math.random() * 2;
+                const size = 6 + Math.random() * 8;
+                const rotation = Math.random() * 360;
+
+                piece.style.left = left + '%';
+                piece.style.width = size + 'px';
+                piece.style.height = size + 'px';
+                piece.style.backgroundColor = color;
+                piece.style.animationDelay = delay + 's';
+
+                if (shape === 'circle') {
+                    piece.style.borderRadius = '50%';
+                } else if (shape === 'triangle') {
+                    piece.style.width = '0';
+                    piece.style.height = '0';
+                    piece.style.backgroundColor = 'transparent';
+                    piece.style.borderLeft = (size/2) + 'px solid transparent';
+                    piece.style.borderRight = (size/2) + 'px solid transparent';
+                    piece.style.borderBottom = size + 'px solid ' + color;
+                }
+
+                piece.style.animation = `confettiFall ${duration}s ease-in ${delay}s forwards`;
+                container.appendChild(piece);
+
+                // Clean up after animation
+                setTimeout(() => {
+                    piece.remove();
+                }, (duration + delay) * 1000 + 500);
+            }
+        }
+
+        // Add confetti animation dynamically
+        const styleSheet = document.createElement('style');
+        styleSheet.textContent = `
+            @keyframes confettiFall {
+                0% {
+                    transform: translateY(0) rotate(0deg);
+                    opacity: 1;
+                }
+                25% {
+                    transform: translateY(25vh) rotate(${90 + Math.random() * 180}deg) translateX(${(Math.random() - 0.5) * 100}px);
+                    opacity: 1;
+                }
+                75% {
+                    opacity: 0.7;
+                }
+                100% {
+                    transform: translateY(100vh) rotate(${360 + Math.random() * 360}deg) translateX(${(Math.random() - 0.5) * 200}px);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(styleSheet);
+
+        // Close overlay when clicking outside
+        document.getElementById('letterOverlay').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeEnvelope();
+            }
+        });
+    </script>
+
+</body>
+
+</html>
