@@ -204,8 +204,13 @@ html {
 
 /* 4. New "Excited" State (Are you excited?) */
 .state-excited .cat-container {
-    top: 40%;
-    left: 65%;
+    top: 35%;
+    left: 70%;
+}
+
+/* cat4 is bigger on the "Excited" page */
+.state-excited .hero-cat {
+    max-width: 500px; /* Increased size for the new sticker */
 }
 
 /* ------------------------------------------------------ */
