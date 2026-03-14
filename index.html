@@ -167,33 +167,15 @@
             questionText.innerHTML = "Are you excited? ";
             heroSticker.src = "cat4.png"; 
             
-            // Remove YESSS! button and add 3D Gift Box
+            // Remove YESSS! button and add Final Click Button
             btnGroup.innerHTML = `
                 <div class="gift-section" style="display: flex; flex-direction: column; align-items: center;">
-                    <p class="click-note">Click Here! </p>
-                    <div class="gift-container" id="gift-box-click">
-                        <div class="gift-box">
-                            <div class="side front"></div>
-                            <div class="side back"></div>
-                            <div class="side left"></div>
-                            <div class="side right"></div>
-                            <div class="side top">
-                                <div class="bow">
-                                    <div class="bow-left"></div>
-                                    <div class="bow-right"></div>
-                                </div>
-                            </div>
-                            <div class="side bottom"></div>
-                        </div>
-                    </div>
+                    <button class="btn btn-yes" id="btn-final-click" style="width: 100%; font-size: 2.2rem; font-family: 'Dancing Script', cursive; padding: 20px 60px;">Click Here!</button>
                 </div>
             `;
             
-            document.getElementById('gift-box-click').addEventListener('click', function() {
-                this.classList.add('open');
-                setTimeout(() => {
-                    showFinalSurprise();
-                }, 800);
+            document.getElementById('btn-final-click').addEventListener('click', function() {
+                showFinalSurprise();
             });
         }
 
@@ -202,11 +184,11 @@
             contentArea.classList.remove('state-excited');
             contentArea.classList.add('state-final-surprise');
 
-            mainTitle.innerText = "HAPPY BIRTHDAY!!";
+            mainTitle.innerText = "HAPPY BIRTHDAY THEE !!";
             questionText.innerHTML = "Wishing you the best day ever! ";
-            heroSticker.src = "cat2.png"; // Or a special hbd cat if available
+            heroSticker.src = "cat7.png"; // Or a special hbd cat if available
             btnGroup.innerHTML = `
-                <button class="btn btn-yes" onclick="location.reload()" style="width: 100%;">Replay?  </button>
+                <button class="btn btn-yes" onclick="location.reload()" style="width: 100%;">Click here </button>
             `;
         }
 
